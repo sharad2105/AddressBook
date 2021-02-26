@@ -1,27 +1,46 @@
 package com.addressbook.javapractice;
 
+import java.util.Scanner;
+
 public class AddressBook {
-    String firstName;
-    String lastName;
-    String address;
-    String city;
-    String state;
-    int zipCode;
-    String phoneNumber;
+    static Person readDataFromConsole() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the Details of Person");
+        System.out.println("Enter the first name");
+        String firstName = sc.next();
+        System.out.println("Enter the Last name");
+        String lastName = sc.next();
+        System.out.println("Enter the Address");
+        String address = sc.next();
+        System.out.println("Enter the City");
+        String city = sc.next();
+        System.out.println("Enter the State");
+        String state = sc.next();
+        System.out.println("Enter the ZipCode");
+        int zipCode = sc.nextInt();
+        System.out.println("Enter the contact number...");
+        String phoneNumber = sc.next();
 
-    AddressBook(String firstName, String lastName, String address, String city, String state, int zipCode,String phoneNumber)
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-        this.phoneNumber = phoneNumber;
+        return new Person(firstName, lastName, address, city, state, zipCode, phoneNumber);
     }
-
-    public static void main(String[] args)
-    {
-        AddressBook ab = new AddressBook("Sharad","Patil","Nyahalod","Dhule","Maharastra",424002,"9096549959")
+    static void menu() {
+        Person person = null;
+        int choice;
+        do {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Enter ur choice press 1 For Add person press 2 For Edit person 3 For the Delete 4 For Display ");
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    person = readDataFromConsole();
+                    break;
+                default:
+                    System.out.println("Enter numer from 1 to 1");
+            }
+        } while (choice<1);
     }
-}}
+    public static void main(String[] args) {
+        Person person = readDataFromConsole();
+        menu();
+    }
+}
